@@ -3,7 +3,7 @@
 @section('konten')
 
 <h1>
-HOME
+HALAMAN MHS SELESAI
 </h1>
 
 @endsection

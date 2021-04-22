@@ -3,7 +3,7 @@
 @section('konten')
 
 <h1>
-HOME
+Halaman MHS READY
 </h1>
 
 @endsection
