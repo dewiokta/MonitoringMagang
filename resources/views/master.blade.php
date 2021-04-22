@@ -6,7 +6,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- CSRF Token -->
   <meta name="_token" content="PnZncWfQtQ5T7LcJWpFwVi6F3gQ4vmszIsZ8Affn">
   
@@ -26,6 +27,7 @@
   </head>
   
 <body>
+
   <div class="container-scroller">
     <div class="container-fluid page-body-wrapper">
       <nav class="sidebar sidebar-offcanvas dynamic-active-class-disabled" id="sidebar">      
@@ -133,7 +135,7 @@
       <footer class="footer">
             <div class="container-fluid clearfix">
               <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Sistem Monitoring Magang Politeknik Negeri Malang</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">MI2C 2020</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">MK Proyek 1</span>
             </div>
       </footer>
   
