@@ -14,11 +14,11 @@ class AddTambahanToMhssTable extends Migration
     public function up()
     {
         Schema::table('mhss', function (Blueprint $table) {
-            $table->unsignedBigInteger('nipp');
-            $table->foreign('nipp')->references('nip')->on('kampuses');
+            $table->unsignedBigInteger('nipp')->nullable();
+            $table->foreign('nipp')->references('nip')->on('kampuses')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('kodePT');
-            $table->foreign('kodePT')->references('kode_pt')->on('perusahaans');
+            $table->unsignedBigInteger('kodePT')->nullable();
+            $table->foreign('kodePT')->references('kode_pt')->on('perusahaans')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }

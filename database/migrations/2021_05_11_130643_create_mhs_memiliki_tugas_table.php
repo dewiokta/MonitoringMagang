@@ -14,11 +14,11 @@ class CreateMhsMemilikiTugasTable extends Migration
     public function up()
     {
         Schema::create('mhs_memiliki_tugas', function (Blueprint $table) {
-            $table->unsignedBigInteger('nimm');
-            $table->foreign('nimm')->references('nim')->on('mhss');
+            $table->unsignedBigInteger('nimm')->nullable();
+            $table->foreign('nimm')->references('nim')->on('mhss')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unsignedBigInteger('kode_tgs');
-            $table->foreign('kode_tgs')->references('kode_tugas')->on('tugas');
+            $table->unsignedBigInteger('kode_tgs')->nullable();
+            $table->foreign('kode_tgs')->references('kode_tugas')->on('tugas')->onUpdate('cascade')->onDelete('cascade');
 
             $table->string('nilai');
             $table->text('komentar');
