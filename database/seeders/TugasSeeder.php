@@ -20,7 +20,7 @@ class TugasSeeder extends Seeder
                 'kode_tugas'       => '2221',
                 'nama_tugas'       => 'Buat database',
                 'status'           => 'Selesai',
-            ]
+            ],
         );
     }
 }

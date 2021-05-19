@@ -5,7 +5,9 @@
 div.hello{
     text-align: center;
 }
-
+div.card-body{
+  background-color : white;
+}
 form.example input[type=text] {
   padding: 8px;
   font-size: 17px;
@@ -34,17 +36,42 @@ form.example button {
 <br><br>
     <div class="row">
         <div class="col-md-12">
-<div class="hello">
-<h2>Data Mahasiswa</h2>
-<p>Politeknik Negeri Malang</p>
-</div>
-<br>
-<form class="example" action="/action_page.php" style="margin:auto;max-width:700px">
-  <input type="text" placeholder="Search.." name="search2">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
+          <div class="hello">
+            <h2>Data Mahasiswa</h2>
+              <p>Politeknik Negeri Malang</p>
+          </div>
+            <br>
+            <form class="example" action="/action_page.php" style="margin:auto;max-width:700px">
+              <input type="text" placeholder="Search.." name="search2">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
 
-</div></div>
+            <br><br><br><br>
+          
+            <div class="card-body">
+              <table class="table table-bordered table-hover table-striped">
+                <thead>
+                  <tr>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Tempat Magang</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($mhs as $m)
+                    <tr>
+                      <td> {{ $m->nim }}      </td>
+                      <td> {{ $m->nama_mhs }} </td>							                    
+                      <td>
+                      {{ $m->perusahaan }}
+                      </td>
+                    </tr>
+                  @endforeach
+                </tbody> 
+              </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

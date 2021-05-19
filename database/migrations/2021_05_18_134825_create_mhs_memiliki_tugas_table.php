@@ -15,7 +15,7 @@ class CreateMhsMemilikiTugasTable extends Migration
     {
         Schema::create('mhs_memiliki_tugas', function (Blueprint $table) {
             $table->unsignedBigInteger('nimm')->nullable();
-            $table->foreign('nimm')->references('nim')->on('mhss')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('nimm')->references('nim')->on('mahasiswas')->onUpdate('cascade')->onDelete('cascade');
 
             $table->unsignedBigInteger('kode_tgs')->nullable();
             $table->foreign('kode_tgs')->references('kode_tugas')->on('tugas')->onUpdate('cascade')->onDelete('cascade');

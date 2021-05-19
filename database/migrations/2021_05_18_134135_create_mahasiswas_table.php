@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMhssTable extends Migration
+class CreateMahasiswasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class CreateMhssTable extends Migration
      */
     public function up()
     {
-        Schema::create('mhss', function (Blueprint $table) {
+        Schema::create('mahasiswas', function (Blueprint $table) {
             $table->bigIncrements('nim');
 
-            // $table->unsignedBigInteger('nipp');
-            // $table->foreign('nipp')->references('nip')->on('kampuses');
-
-            // $table->unsignedBigInteger('kodePT');
-            // $table->foreign('kodePT')->references('kode_pt')->on('perusahaans');
-
+            $table->unsignedBigInteger('nipp');
+            $table->foreign('nipp')->references('nip')->on('kampuses')->onDelete('cascade')->onUpdate('cascade');
+           
+            $table->unsignedBigInteger('kodePT');
+            $table->foreign('kodePT')->references('kode_pt')->on('perusahaans')->onDelete('cascade')->onUpdate('cascade');
             $table->string('nama_mhs');
             $table->string('ttl');
             $table->string('jurusan');
+            
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ class CreateMhssTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mhss');
+        Schema::dropIfExists('mahasiswas');
     }
 }
