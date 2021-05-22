@@ -55,16 +55,17 @@ form.example button {
                     <th>NIM</th>
                     <th>Nama</th>
                     <th>Tempat Magang</th>
+                    <th>Pembimbing</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($mhs as $m)
+                  @foreach ($mahasiswa as $m)
                     <tr>
-                      <td> {{ $m->nim }}      </td>
-                      <td> {{ $m->nama_mhs }} </td>							                    
-                      <td>
-                      {{ $m->perusahaan }}
-                      </td>
+                      <td> {{ $m->nim }}       </td>
+                      <td> {{ $m->nama_mhs }}  </td>	
+                      <td> {{ $m->nama_pt }} </td>
+                      <td> {{ $m->pembimbing }} </td>
+                      
                     </tr>
                   @endforeach
                 </tbody> 

@@ -35,15 +35,24 @@ class MhsController extends Controller
         // $mhs = \App\Mahasiswa::find($kodePT);
         // return $mhs->nama_pt;
         // $mhs = Mahasiswa::get();
-        $mhs = Mahasiswa::with('perusahaan')->get(); 
-        return view('admin_kampus\kmps_dataMhs', compact('mhs'));
+        
+        // $mahasiswa = Mahasiswa::with('perusahaan')->get(); 
+
+        // $mahasiswa = Mahasiswa::all();
+        // $perusahaan = Perusahaan::all();
+        // return view('admin_kampus\kmps_dataMhs', compact('mahasiswa','perusahaan'));
+
         // return view('admin_kampus\kmps_dataMhs',['mhs' => $mhs]);
         // return view('article',['artikel' => $artikel]); 
-        
-
         // $mhs = DB::table('mhss')->get();
+        $mahasiswa = DB::table('mahasiswas')
+            ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
+            ->select('mahasiswas.nim', 'mahasiswas.nama_mhs', 'perusahaans.nama_pt', 'perusahaans.pembimbing')
+            ->get();
+            return view('admin_kampus\kmps_dataMhs', compact('mahasiswa'));
         // return view('admin_kampus\kmps_dataMhs', ['mhs' => $mhs]);
     }
+  
 
 
     //admin pt
