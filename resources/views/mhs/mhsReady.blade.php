@@ -5,7 +5,9 @@
 div.hello{
     text-align: center;
 }
-
+div.card-body{
+  background-color : white;
+}
 form.example input[type=text] {
   padding: 8px;
   font-size: 17px;
@@ -44,7 +46,35 @@ form.example button {
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-</div></div>
+
+<br><br><br><br>
+          
+          <div class="card-body">
+            <table class="table table-bordered table-hover table-striped">
+              <thead>
+                <tr>
+                  <th>Kode Tugas</th>
+                  <th>Nama Tugas</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($tgs as $t)
+                  @if($t->status == null)
+                  <tr>
+                    <td> {{ $t->kode_tugas }}  </td>
+                    <td> {{ $t->nama_tugas }}  </td>	
+                    <td>
+                    <a href="/" class="btn btn-primary">Kerjakan</a>
+                    </td>
+                  </tr>
+                  @endif
+                @endforeach
+              </tbody> 
+            </table>
+          </div>
+      </div>
+  </div>
 </div>
 
 @endsection

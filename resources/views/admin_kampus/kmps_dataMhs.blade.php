@@ -55,7 +55,8 @@ form.example button {
                     <th>NIM</th>
                     <th>Nama</th>
                     <th>Tempat Magang</th>
-                    <th>Pembimbing</th>
+                    <!-- <th>Pembimbing</th> -->
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,8 +65,10 @@ form.example button {
                       <td> {{ $m->nim }}       </td>
                       <td> {{ $m->nama_mhs }}  </td>	
                       <td> {{ $m->nama_pt }} </td>
-                      <td> {{ $m->pembimbing }} </td>
-                      
+                      <!-- <td> {{ $m->pembimbing }} </td> -->
+                      <td>
+                      <a href="/" class="btn btn-primary">Lihat</a>
+                      </td>
                     </tr>
                   @endforeach
                 </tbody> 

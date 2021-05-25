@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Mahasiswa;
 use App\Models\Kampus;
 use App\Models\Perusahaan;
+use App\Models\Tugas;
 
 
 class MhsController extends Controller
@@ -18,12 +19,40 @@ class MhsController extends Controller
     }
 
     public function selesai_mhs(){
-        return view('mhs\mhsSelesai');
+        $tgs = DB::table('tugas')
+            ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
+            ->select('tugas.kode_tugas', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
+            ->get();
+        return view('mhs\mhsSelesai', compact('tgs'));
     }
 
     public function ready_mhs(){
-        return view('mhs\mhsReady');
+        $tgs = Tugas::Get();
+        return view('mhs\mhsReady', compact('tgs'));
     }
+
+    public function proses_upload(Request $request){
+		$this->validate($request, [
+            'status' => "required|mimetypes:application/pdf|max:10000",
+        ]);
+
+        // menyimpan data file yang diupload ke variabel $file
+		$status = $request->status('status');
+ 
+		$nama_file = time()."_".$status->getClientOriginalName();
+ 
+      	        // isi dengan nama folder tempat kemana file diupload
+		$tujuan_upload = 'data_file';
+		$file->move($tujuan_upload,$nama_file);
+ 
+		Tugas::create([
+			'status' => $nama_file,
+		]);
+ 
+		return redirect()->back();
+	}
+    
+
 
 
     // admin kampus
