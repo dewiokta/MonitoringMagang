@@ -24,7 +24,7 @@ class MhsController extends Controller
 
     public function selesai_mhs()
     {
-        $tgs = DB::table('tugas')
+        $tgs = DB::table('tugas')->where('kode_tugas' , '=', '2222' )
             ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
             ->select('tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
             ->get();
@@ -52,7 +52,7 @@ class MhsController extends Controller
             // 'status' => $nama_file
         ]);
 
-        return redirect()->back()->with('succes','Data Telah diupload');
+        return redirect()->back()->with('succes', 'Data Telah diupload');
     }
 
 
@@ -68,10 +68,37 @@ class MhsController extends Controller
     {
         $mahasiswa = DB::table('mahasiswas')
             ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
-            ->select('mahasiswas.nim', 'mahasiswas.nama_mhs', 'perusahaans.nama_pt', 'perusahaans.pembimbing')
+            ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
+            ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
+            ->select('mahasiswas.nim', 'mahasiswas.nama_mhs', 'perusahaans.nama_pt', 'perusahaans.pembimbing', 'tugas.nama_tugas')
             ->get();
         return view('admin_kampus\kmps_dataMhs', compact('mahasiswa'));
     }
+    public function lihat($id)
+    {
+        $lht = DB::table('mahasiswas')->where('nim', '=', $id)->get();
+        return view('admin_kampus\lihat', compact('lht'));
+    }
+    // public function tampil()
+    // {
+    //     $l = DB::table('mahasiswas')
+    //         ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
+    //         ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
+    //         ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
+    //         ->select(
+    //             'mahasiswas.nim',
+    //             'mahasiswas.nama_mhs',
+    //             'mahasiswas.ttl',
+    //             'mahasiswas.jurusan',
+    //             'perusahaans.nama_pt',
+    //             'perusahaans.pembimbing',
+    //             'perusahaans.alamat',
+    //             'perusahaans.pembimbing',
+    //             'tugas.nama_tugas'
+    //         )
+    //         ->get();
+    //     return view('admin_kampus\tampil', compact('l'));
+    // }
 
 
 
@@ -99,17 +126,17 @@ class MhsController extends Controller
     }
     public function stornilai(Request $request)
     {
-    	$this->validate($request,[
-    		'nilai' => 'required',
-    		'komentar' => 'required',
-    	]);
- 
+        $this->validate($request, [
+            'nilai' => 'required',
+            'komentar' => 'required',
+        ]);
+
         mhs_memiliki_tugas::create([
-    		'nilai' => $request->nilai,
-    		'komentar' => $request->komentar,
-    	]);
- 
-    	return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
+            'nilai' => $request->nilai,
+            'komentar' => $request->komentar,
+        ]);
+
+        return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
     }
     public function add_pt()
     {
@@ -117,17 +144,17 @@ class MhsController extends Controller
     }
     public function store(Request $request)
     {
-    	$this->validate($request,[
-    		'kode_tugas' => 'required',
-    		'nama_tugas' => 'required',
-    	]);
- 
+        $this->validate($request, [
+            'kode_tugas' => 'required',
+            'nama_tugas' => 'required',
+        ]);
+
         Tugas::create([
-    		'kode_tugas' => $request->kode_tugas,
-    		'nama_tugas' => $request->nama_tugas,
-    	]);
- 
-    	return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
+            'kode_tugas' => $request->kode_tugas,
+            'nama_tugas' => $request->nama_tugas,
+        ]);
+
+        return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
     }
     public function update_pt(Request $request)
     {

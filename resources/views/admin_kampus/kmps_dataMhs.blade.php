@@ -52,22 +52,24 @@ form.example button {
               <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>
-                    <th>NIM</th>
+                    <!-- <th>NIM</th> -->
                     <th>Nama</th>
                     <th>Tempat Magang</th>
-                    <!-- <th>Pembimbing</th> -->
+                    <th>Aktivitas</th>
+                    <th>Pembimbing</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($mahasiswa as $m)
                     <tr>
-                      <td> {{ $m->nim }}       </td>
+                      <!-- <td> {{ $m->nim }}       </td> -->
                       <td> {{ $m->nama_mhs }}  </td>	
                       <td> {{ $m->nama_pt }} </td>
-                      <!-- <td> {{ $m->pembimbing }} </td> -->
+                      <td> {{ $m->nama_tugas }} </td>
+                      <td> {{ $m->pembimbing }} </td>
                       <td>
-                      <a href="/" class="btn btn-primary">Lihat</a>
+                      <a href="/lihat/{{ $m->nim }}" class="btn btn-primary">Lihat</a>
                       </td>
                     </tr>
                   @endforeach

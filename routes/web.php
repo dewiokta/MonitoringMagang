@@ -32,6 +32,9 @@ Route::post('/upload_file', [App\Http\Controllers\MhsController::class, 'upload_
 Route::get('/home_kmps', [App\Http\Controllers\MhsController::class, 'home_kmps'])->name('kmps_home');
 Route::get('/dataMhs_kmps', [App\Http\Controllers\MhsController::class, 'dataMhs_kmps'])->name('kmps_dataMhs');
 
+Route::get('/lihat/{id}', [App\Http\Controllers\MhsController::class, 'lihat'])->name('lihat');
+// Route::get('/tampil',[App\Http\Controllers\MhsController::class, 'tampil'])->name('tampil');
+
 //admin pt
 Route::get('/home_pt', [App\Http\Controllers\MhsController::class, 'home_pt'])->name('pt_home');
 Route::get('/selesai_pt', [App\Http\Controllers\MhsController::class, 'selesai_pt'])->name('pt_selesai');
