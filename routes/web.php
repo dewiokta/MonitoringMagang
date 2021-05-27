@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -35,3 +35,5 @@ Route::get('/home_pt', [App\Http\Controllers\MhsController::class, 'home_pt'])->
 Route::get('/selesai_pt', [App\Http\Controllers\MhsController::class, 'selesai_pt'])->name('pt_selesai');
 Route::get('/ready_pt', [App\Http\Controllers\MhsController::class, 'ready_pt'])->name('pt_ready');
 Route::get('/mhs_pt', [App\Http\Controllers\MhsController::class, 'mhs_pt'])->name('pt_mhs');
+
+Route::POST('/simpandata', [App\Http\Controllers\MhsController::class, 'simpandata'])->name('simpandata');
