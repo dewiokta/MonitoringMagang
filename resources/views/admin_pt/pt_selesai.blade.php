@@ -63,13 +63,15 @@
           </thead>
           <tbody>
             @foreach ($mhsss as $m)
+            @if($m->kode_pt == 3331)
             <tr>
               <td> {{ $m->kode_tugas }} </td>
               <td> {{ $m->nama_tugas }} </td>
               <td> {{ $m->nama_mhs }} </td>
               <td> {{ $m->status }} </td>
-              <td>  <a href="/nilai" class="btn btn-primary">Nilai</a> </td>
+              <td> <a href="/nilai" class="btn btn-primary">Nilai</a> </td>
             </tr>
+            @endif
             @endforeach
           </tbody>
         </table>

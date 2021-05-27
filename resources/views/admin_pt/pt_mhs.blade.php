@@ -63,6 +63,7 @@
           </thead>
           <tbody>
             @foreach ($mhss as $m)
+            @if($m->kode_pt == 3331)
             <tr>
               <td> {{ $m->nim }} </td>
               <td> {{ $m->nama_mhs }} </td>
@@ -70,6 +71,7 @@
               <td> {{ $m->jurusan }} </td>
               <td> {{ $m->nama_tugas }} </td>
             </tr>
+            @endif
             @endforeach
           </tbody>
         </table>

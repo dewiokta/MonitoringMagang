@@ -24,7 +24,7 @@ class MhsController extends Controller
 
     public function selesai_mhs()
     {
-        $tgs = DB::table('tugas')->where('kode_tugas' , '=', '2222' )
+        $tgs = DB::table('tugas')->where('kode_tugas', '=', '2222')
             ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
             ->select('tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
             ->get();
@@ -177,9 +177,10 @@ class MhsController extends Controller
     public function mhs_pt()
     {
         $mhss = DB::table('mahasiswas')
+        ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
             ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
             ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
-            ->select('mahasiswas.nim', 'mahasiswas.nama_mhs', 'mahasiswas.ttl', 'mahasiswas.jurusan', 'tugas.nama_tugas')
+            ->select('perusahaans.kode_pt','mahasiswas.nim', 'mahasiswas.nama_mhs', 'mahasiswas.ttl', 'mahasiswas.jurusan', 'tugas.nama_tugas')
             ->get();
         return view('admin_pt\pt_mhs', compact('mhss'));
     }
@@ -187,9 +188,10 @@ class MhsController extends Controller
     public function selesai_pt()
     {
         $mhsss = DB::table('mahasiswas')
+            ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
             ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
             ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
-            ->select('tugas.kode_tugas', 'mahasiswas.nama_mhs', 'tugas.nama_tugas', 'tugas.status')
+            ->select('perusahaans.kode_pt','tugas.kode_tugas', 'mahasiswas.nama_mhs', 'tugas.nama_tugas', 'tugas.status')
             ->get();
         return view('admin_pt\pt_selesai', compact('mhsss'));
     }
