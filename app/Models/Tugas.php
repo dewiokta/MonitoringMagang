@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tugas extends Model
 {
+
     protected $table = "tugas";
-    protected $fillable = [
-        'kode_tugas', 'nama_tugas'
-    ];
+
+    protected $fillable = ['kode_tugas', 'nama_tugas'];
 }

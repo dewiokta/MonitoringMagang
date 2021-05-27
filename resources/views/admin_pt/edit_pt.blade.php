@@ -37,10 +37,10 @@
                     {{ csrf_field() }}
 
                     @foreach ($editpt as $edt)
-                    @if($edt->status == null)
                     <input type="hidden" name="id" value="{{ $edt->kode_tugas }}"> <br />
 
-
+                    
+                    <!-- @if($edt->status == null) -->
                     <div class="form-group row">
                         <label for="name" class="col-md-2 col-form-label text-md-right">Kode Tugas</label>
                         <div class="col-md-10">
@@ -54,9 +54,10 @@
                             <input type="text" required="required" class="form-control" name="nama_tugas" value="{{ $edt->nama_tugas }}">
                         </div>
                     </div>
-
+                    <!-- @endif -->
+                    
                     <input type="hidden" name="id" value="{{ $edt->kode_tugas }}"> <br />
-
+                    @endforeach
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-2">
@@ -70,6 +71,5 @@
         </div>
     </div>
 </div>
-@endif
-@endforeach
+
 @endsection

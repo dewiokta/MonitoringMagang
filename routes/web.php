@@ -38,3 +38,6 @@ Route::get('/mhs_pt', [App\Http\Controllers\MhsController::class, 'mhs_pt'])->na
 
 Route::get('/edit_pt/{id}',[App\Http\Controllers\MhsController::class, 'edit_pt'])->name('edit_pt');
 Route::post('/update_pt',[App\Http\Controllers\MhsController::class, 'update_pt'])->name('update_pt');
+Route::delete('/ready_pt/destroy/{dtug}',[App\Http\Controllers\MhsController::class, 'destroy_pt'])->name('destroy_pt');
+Route::get('/add_pt',[App\Http\Controllers\MhsController::class, 'add_pt'])->name('add_pt');
+Route::post('/add_pt/store',[App\Http\Controllers\MhsController::class, 'store'])->name('store');

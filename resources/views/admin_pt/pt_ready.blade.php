@@ -70,6 +70,17 @@
               <td> {{ $t->nama_tugas }} </td>
               <td>
                 <a href="/edit_pt/{{ $t->kode_tugas }}" class="btn btn-primary">Edit</a>
+                <!-- <a href="{{url('/delete'). '/'. $t->kode_tugas}}" class="btn btn-danger">Hapus</a> -->
+                
+                
+                <form action="{{route('destroy_pt', $t->kode_tugas) }}" method="POST">
+
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to deleted this?')">Delete</button>
+                </form>
+
+
               </td>
             </tr>
             @endif
@@ -81,7 +92,7 @@
 
     <div class="col-md-9"></div> <br>
     <div class="col-md-3">
-      <a href="" class="btn btn-success"><i class="fa fa-plus"></i>Tambah</a>
+      <a href="/add_pt" class="btn btn-success"><i class="fa fa-plus"></i>Tambah</a>
     </div>
   </div>
 </div>

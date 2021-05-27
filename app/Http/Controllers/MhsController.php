@@ -98,14 +98,43 @@ class MhsController extends Controller
         return view('admin_pt\edit_pt', compact('editpt'));
     }
 
+    public function add_pt()
+    {
+        return view('admin_pt\add_pt');
+    }
+    public function store(Request $request)
+    {
+    	$this->validate($request,[
+    		'kode_tugas' => 'required',
+    		'nama_tugas' => 'required',
+            'status' => 'null'
+    	]);
+ 
+        Tugas::create([
+    		'kode_tugas' => $request->kode_tugas,
+    		'nama_tugas' => $request->nama_tugas,
+            'status' != $request->status
+    	]);
+ 
+    	return redirect('/ready_pt');
+    }
     public function update_pt(Request $request)
     {
         DB::table('tugas')->where('kode_tugas', $request->id)->update([
             'kode_tugas' => $request->kode_tugas,
-            'nama_tugas' => $request->nama_tugas,
+            'nama_tugas' => $request->nama_tugas
         ]);
         return redirect('ready_pt');
     }
+
+    public function destroy_pt($id)
+    {
+        //
+        // menghapus data pegawai berdasarkan id yang dipilih 
+        DB::table('tugas')->where('kode_tugas', $id)->delete();
+        return redirect()->back()->with('Success', 'Tugas deleted successfully');
+    }
+
 
     public function mhs_pt()
     {
