@@ -36,4 +36,5 @@ Route::get('/selesai_pt', [App\Http\Controllers\MhsController::class, 'selesai_p
 Route::get('/ready_pt', [App\Http\Controllers\MhsController::class, 'ready_pt'])->name('pt_ready');
 Route::get('/mhs_pt', [App\Http\Controllers\MhsController::class, 'mhs_pt'])->name('pt_mhs');
 
-Route::POST('/simpandata', [App\Http\Controllers\MhsController::class, 'simpandata'])->name('simpandata');
+Route::get('/edit_pt/{id}',[App\Http\Controllers\MhsController::class, 'edit_pt'])->name('edit_pt');
+Route::post('/update_pt',[App\Http\Controllers\MhsController::class, 'update_pt'])->name('update_pt');

@@ -10,6 +10,7 @@
     background-color: white;
   }
 
+
   form.example input[type=text] {
     padding: 8px;
     font-size: 17px;
@@ -42,6 +43,7 @@
         <h2>Tugas Ready</h2>
         <p>Tugas yang belum dikerjakan mahasiswa magang</p>
       </div>
+
       <br>
       <form class="example" action="/action_page.php" style="margin:auto;max-width:700px">
         <input type="text" placeholder="Search.." name="search2">
@@ -50,12 +52,14 @@
 
       <br><br><br><br>
 
+
       <div class="card-body">
         <table class="table table-bordered table-hover table-striped">
           <thead>
             <tr>
               <th>Kode Tugas </th>
               <th>Nama Tugas </th>
+              <th>Aksi </th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +68,9 @@
             <tr>
               <td> {{ $t->kode_tugas }} </td>
               <td> {{ $t->nama_tugas }} </td>
+              <td>
+                <a href="/edit_pt/{{ $t->kode_tugas }}" class="btn btn-primary">Edit</a>
+              </td>
             </tr>
             @endif
             @endforeach
@@ -71,41 +78,15 @@
         </table>
       </div>
     </div>
+
+    <div class="col-md-9"></div> <br>
+    <div class="col-md-3">
+      <a href="" class="btn btn-success"><i class="fa fa-plus"></i>Tambah</a>
+    </div>
   </div>
-  <br>
-  <center>
-    <button class="btn btn-primary btn-sm btn-flat" data-toggle="modal" data-target="#modal-add"><i class="fa fa-plus"></i>Tambah</button>
-  </center>
 </div>
-
-
-<!-- modal add data-->
-<div class="modal inmodal fade" id="modal-add" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-xs">
-    <form name="frm_add" id="frm_add" class="form-horizontal" action="{{route('simpandata')}}" method="POST" enctype="multipart/form-data">
-      @csrf
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-          <h4 class="modal-title">Tambah Data</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group"><label class="col-lg-2 control-label">Kode Tugas</label>
-            <div class="col-lg-10"><input type="text" name="kelas" placeholder="Kelas" class="form-control"></div>
-          </div>
-        </div>
-        <div class="modal-body">
-          <div class="form-group"><label class="col-lg-2 control-label">Nama Tugas</label>
-            <div class="col-lg-10"><input type="text" name="kelas" placeholder="Kelas" class="form-control"></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-white" data-dismiss="modal">Tutup</button>
-          <button type="submit" class="btn btn-primary">Simpan</button>
-        </div>
-      </div>
-    </form>
-  </div>
+</div>
+</div>
 </div>
 
 @endsection

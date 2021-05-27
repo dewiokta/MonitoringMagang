@@ -91,18 +91,24 @@ class MhsController extends Controller
         return view('admin_pt\pt_ready', compact('tgss'));
     }
 
-    public function simpandata(Request $request)
+    public function edit_pt($id)
     {
-        $simpan = DB::table('tugas')->insert([
-            'kode_tugas' => $request->post('kode_tugas'),
-            'nama_tugas' => $request->post('nama_tugas')
+        $editpt = Tugas::get();
+        // $editpt = DB::table('tugas')->where('kode_tugas', '=', $id)->get();
+        return view('admin_pt\edit_pt', compact('editpt'));
+    }
+
+    public function update_pt(Request $request)
+    {
+        DB::table('tugas')->where('kode_tugas', $request->id)->update([
+            'kode_tugas' => $request->kode_tugas,
+            'nama_tugas' => $request->nama_tugas,
         ]);
-        return redirect('simpan');
+        return redirect('ready_pt');
     }
 
     public function mhs_pt()
     {
-
         $mhss = DB::table('mahasiswas')
             ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
             ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
