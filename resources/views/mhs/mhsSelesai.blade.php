@@ -53,17 +53,18 @@ form.example button {
             <table class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
-                  <th>Kode Tugas</th>
+                  <th>File Tugas</th>
                   <th>Nama Tugas</th>
-                  <th>Komentar</th>
                   <th>Nilai</th>
+                  <th>Komentar</th>
+                  
                 </tr>
               </thead>
               <tbody>
                 @foreach ($tgs as $t)
                   
                   <tr>
-                    <td> {{ $t->kode_tugas }}  </td>
+                    <td> {{ $t->status }}  </td>
                     <td> {{ $t->nama_tugas }}  </td>
                     <td> {{ $t->nilai }}  </td>
                     <td> {{ $t->komentar }}  </td>	

@@ -58,6 +58,7 @@
               <th>Nama Tugas</th>
               <th>Nama Mahasiswa</th>
               <th>File </th>
+              <th>Aksi </th>
             </tr>
           </thead>
           <tbody>
@@ -67,6 +68,7 @@
               <td> {{ $m->nama_tugas }} </td>
               <td> {{ $m->nama_mhs }} </td>
               <td> {{ $m->status }} </td>
+              <td>  <a href="/nilai" class="btn btn-primary">Nilai</a> </td>
             </tr>
             @endforeach
           </tbody>

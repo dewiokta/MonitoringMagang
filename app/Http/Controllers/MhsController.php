@@ -26,7 +26,7 @@ class MhsController extends Controller
     {
         $tgs = DB::table('tugas')
             ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
-            ->select('tugas.kode_tugas', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
+            ->select('tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
             ->get();
         return view('mhs\mhsSelesai', compact('tgs'));
     }
@@ -44,19 +44,15 @@ class MhsController extends Controller
         ]);
 
         // menyimpan data file yang diupload ke variabel $file
-        $status = $request->status('status');
-
-        $nama_file = time() . "_" . $status->getClientOriginalName();
-
-        // isi dengan nama folder tempat kemana file diupload
-        $tujuan_upload = 'data_file';
-        $status->move($tujuan_upload, $nama_file);
+        // $status = $request->file('status');
+        // $nama_file=time()."_".$status->getClientOriginalName();
 
         Tugas::create([
-            'status' => $nama_file,
+            'status' => $request->status
+            // 'status' => $nama_file
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('succes','Data Telah diupload');
     }
 
 
@@ -97,7 +93,24 @@ class MhsController extends Controller
         $editpt = DB::table('tugas')->where('kode_tugas', '=', $id)->get();
         return view('admin_pt\edit_pt', compact('editpt'));
     }
-
+    public function nilai()
+    {
+        return view('admin_pt\nilai');
+    }
+    public function stornilai(Request $request)
+    {
+    	$this->validate($request,[
+    		'nilai' => 'required',
+    		'komentar' => 'required',
+    	]);
+ 
+        mhs_memiliki_tugas::create([
+    		'nilai' => $request->nilai,
+    		'komentar' => $request->komentar,
+    	]);
+ 
+    	return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
+    }
     public function add_pt()
     {
         return view('admin_pt\add_pt');
@@ -107,16 +120,14 @@ class MhsController extends Controller
     	$this->validate($request,[
     		'kode_tugas' => 'required',
     		'nama_tugas' => 'required',
-            'status' => 'null'
     	]);
  
         Tugas::create([
     		'kode_tugas' => $request->kode_tugas,
     		'nama_tugas' => $request->nama_tugas,
-            'status' != $request->status
     	]);
  
-    	return redirect('/ready_pt');
+    	return redirect('/ready_pt')->with('Success', 'Tugas added successfully');
     }
     public function update_pt(Request $request)
     {
@@ -124,7 +135,7 @@ class MhsController extends Controller
             'kode_tugas' => $request->kode_tugas,
             'nama_tugas' => $request->nama_tugas
         ]);
-        return redirect('ready_pt');
+        return redirect('ready_pt')->with('Success', 'Tugas edited successfully');
     }
 
     public function destroy_pt($id)

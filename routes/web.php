@@ -26,6 +26,8 @@ Route::get('/home_mhs', [App\Http\Controllers\MhsController::class, 'home_mhs'])
 Route::get('/selesai_mhs', [App\Http\Controllers\MhsController::class, 'selesai_mhs'])->name('mhsSelesai');
 Route::get('/ready_mhs', [App\Http\Controllers\MhsController::class, 'ready_mhs'])->name('mhsReady');
 
+Route::post('/upload_file', [App\Http\Controllers\MhsController::class, 'upload_file'])->name('upload_file');
+
 // admin kampus
 Route::get('/home_kmps', [App\Http\Controllers\MhsController::class, 'home_kmps'])->name('kmps_home');
 Route::get('/dataMhs_kmps', [App\Http\Controllers\MhsController::class, 'dataMhs_kmps'])->name('kmps_dataMhs');
@@ -41,3 +43,6 @@ Route::post('/update_pt',[App\Http\Controllers\MhsController::class, 'update_pt'
 Route::delete('/ready_pt/destroy/{dtug}',[App\Http\Controllers\MhsController::class, 'destroy_pt'])->name('destroy_pt');
 Route::get('/add_pt',[App\Http\Controllers\MhsController::class, 'add_pt'])->name('add_pt');
 Route::post('/add_pt/store',[App\Http\Controllers\MhsController::class, 'store'])->name('store');
+
+Route::get('/nilai',[App\Http\Controllers\MhsController::class, 'nilai'])->name('nilai');
+Route::post('/nilai/stornilai',[App\Http\Controllers\MhsController::class, 'stornilai'])->name('stornilai');
