@@ -37,7 +37,7 @@
                     {{ csrf_field() }}
 
                     @foreach ($editpt as $edt)
-                    <input type="hidden" name="id" value="{{ $edt->kode_tugas }}"> <br />
+                    <input type="hidden" name="kode_tugas" value="{{ $edt->kode_tugas }}"> <br />
 
                     
                     <!-- @if($edt->status == null) -->

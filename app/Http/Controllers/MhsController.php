@@ -93,8 +93,8 @@ class MhsController extends Controller
 
     public function edit_pt($id)
     {
-        $editpt = Tugas::get();
-        // $editpt = DB::table('tugas')->where('kode_tugas', '=', $id)->get();
+        // $editpt = Tugas::get();
+        $editpt = DB::table('tugas')->where('kode_tugas', '=', $id)->get();
         return view('admin_pt\edit_pt', compact('editpt'));
     }
 
