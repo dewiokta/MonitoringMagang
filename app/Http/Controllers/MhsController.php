@@ -24,10 +24,11 @@ class MhsController extends Controller
 
     public function selesai_mhs()
     {
-        $tgs = DB::table('tugas')->where('kode_tugas', '=', '2222')
+        // $tgs = DB::table('tugas')->where('kode_tugas', '=', '2222')
+        $tgs = DB::table('tugas')
             ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
             ->select('tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
-            ->get();
+            ->where('nimm', '=', '1931710015')->get();
         return view('mhs\mhsSelesai', compact('tgs'));
     }
 
@@ -63,7 +64,6 @@ class MhsController extends Controller
     {
         return view('admin_kampus\kmps_home');
     }
-
     public function dataMhs_kmps()
     {
         $mahasiswa = DB::table('mahasiswas')
@@ -74,6 +74,27 @@ class MhsController extends Controller
             ->get();
         return view('admin_kampus\kmps_dataMhs', compact('mahasiswa'));
     }
+    //khusus halaman admin kampus untuk mencari data mahasiswa saja, 
+    // karena pada halaman tersebut menampilkan banyak sekali data yang munkin muncul 
+    // daripada halaman yang lainnya
+    public function cari(Request $request)
+    {
+        // menangkap data pencarian
+        $cari = $request->cari;
+
+        // mengambil data dari table pegawai sesuai pencarian data
+        $mahasiswa = DB::table('mahasiswas')
+        ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
+        ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
+        ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
+        ->select('mahasiswas.nim', 'mahasiswas.nama_mhs', 'perusahaans.nama_pt', 'perusahaans.pembimbing', 'tugas.nama_tugas')
+            ->where('nama_mhs', 'like', "%" . $cari . "%")
+            ->paginate();
+
+        // mengirim data pegawai ke view index
+        return view('admin_kampus\kmps_dataMhs', compact('mahasiswa'));
+    }
+
     public function lihat($id)
     {
         $lht = DB::table('mahasiswas')->where('nim', '=', $id)->get();
@@ -120,9 +141,11 @@ class MhsController extends Controller
         $editpt = DB::table('tugas')->where('kode_tugas', '=', $id)->get();
         return view('admin_pt\edit_pt', compact('editpt'));
     }
-    public function nilai()
+    public function nilai($id)
     {
-        return view('admin_pt\nilai');
+        // $nl=mhs_memiliki_tugas::get();
+        $nl = DB::table('mhs_memiliki_tugas')->where('nimm', '=', $id)->get();
+        return view('admin_pt\nilai', compact('nl'));
     }
     public function stornilai(Request $request)
     {
@@ -177,10 +200,10 @@ class MhsController extends Controller
     public function mhs_pt()
     {
         $mhss = DB::table('mahasiswas')
-        ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
+            ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
             ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
             ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
-            ->select('perusahaans.kode_pt','mahasiswas.nim', 'mahasiswas.nama_mhs', 'mahasiswas.ttl', 'mahasiswas.jurusan', 'tugas.nama_tugas')
+            ->select('perusahaans.kode_pt', 'mahasiswas.nim', 'mahasiswas.nama_mhs', 'mahasiswas.ttl', 'mahasiswas.jurusan', 'tugas.nama_tugas')
             ->get();
         return view('admin_pt\pt_mhs', compact('mhss'));
     }
@@ -191,7 +214,7 @@ class MhsController extends Controller
             ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
             ->join('mhs_memiliki_tugas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
             ->join('tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
-            ->select('perusahaans.kode_pt','tugas.kode_tugas', 'mahasiswas.nama_mhs', 'tugas.nama_tugas', 'tugas.status')
+            ->select('perusahaans.kode_pt', 'tugas.kode_tugas', 'mahasiswas.nama_mhs', 'mahasiswas.nim', 'tugas.nama_tugas', 'tugas.status')
             ->get();
         return view('admin_pt\pt_selesai', compact('mhsss'));
     }

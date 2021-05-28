@@ -34,6 +34,7 @@ Route::get('/dataMhs_kmps', [App\Http\Controllers\MhsController::class, 'dataMhs
 
 Route::get('/lihat/{id}', [App\Http\Controllers\MhsController::class, 'lihat'])->name('lihat');
 // Route::get('/tampil',[App\Http\Controllers\MhsController::class, 'tampil'])->name('tampil');
+Route::get('/dataMhs_kmps/cari', [App\Http\Controllers\MhsController::class, 'cari'])->name('cari');
 
 //admin pt
 Route::get('/home_pt', [App\Http\Controllers\MhsController::class, 'home_pt'])->name('pt_home');
@@ -47,5 +48,5 @@ Route::delete('/ready_pt/destroy/{dtug}',[App\Http\Controllers\MhsController::cl
 Route::get('/add_pt',[App\Http\Controllers\MhsController::class, 'add_pt'])->name('add_pt');
 Route::post('/add_pt/store',[App\Http\Controllers\MhsController::class, 'store'])->name('store');
 
-Route::get('/nilai',[App\Http\Controllers\MhsController::class, 'nilai'])->name('nilai');
+Route::get('/nilai/{id}',[App\Http\Controllers\MhsController::class, 'nilai'])->name('nilai');
 Route::post('/nilai/stornilai',[App\Http\Controllers\MhsController::class, 'stornilai'])->name('stornilai');

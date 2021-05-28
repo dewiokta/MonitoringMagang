@@ -33,24 +33,24 @@
             </div>
             <br><br><br>
             <form method="post" action="/nilai/stornilai">
- 
-                        {{ csrf_field() }}
- 
-                        <div class="form-group">
-                            <label>Nilai</label>
-                            <input type="text" name="nilai" class="form-control" placeholder="Nilai..">
-                        </div>
- 
-                        <div class="form-group">
-                            <label>Komentar</label>
-                            <textarea name="komentar" class="form-control" placeholder="Komentar .."></textarea>
-                        </div>
- 
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-success" value="Simpan">
-                        </div>
- 
-                    </form>
+
+                {{ csrf_field() }}
+                @foreach ($nl as $edt)
+                <div class="form-group">
+                    <label>Nilai</label>
+                    <input type="text" name="nilai" class="form-control" value="{{ $edt->nilai }}" >
+                </div>
+
+                <div class="form-group">
+                    <label>Komentar</label>
+                    <input type="text" name="komentar" class="form-control" value="{{ $edt->komentar }}" ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Simpan">
+                </div>
+                @endforeach
+            </form>
 
         </div>
     </div>

@@ -69,7 +69,7 @@
               <td> {{ $m->nama_tugas }} </td>
               <td> {{ $m->nama_mhs }} </td>
               <td> {{ $m->status }} </td>
-              <td> <a href="/nilai" class="btn btn-primary">Nilai</a> </td>
+              <td> <a href="/nilai/{{ $m->nim }}" class="btn btn-primary">Nilai</a> </td>
             </tr>
             @endif
             @endforeach

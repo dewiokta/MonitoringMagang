@@ -41,8 +41,8 @@ form.example button {
               <p>Politeknik Negeri Malang</p>
           </div>
             <br>
-            <form class="example" action="/action_page.php" style="margin:auto;max-width:700px">
-              <input type="text" placeholder="Search.." name="search2">
+            <form class="example" action="/dataMhs_kmps/cari" method="get" style="margin:auto;max-width:700px">
+              <input type="text" placeholder="Search by name . ." name="cari" >
               <button type="submit"><i class="fa fa-search"></i></button>
             </form>
 
