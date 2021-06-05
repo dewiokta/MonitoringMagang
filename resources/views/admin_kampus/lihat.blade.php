@@ -36,15 +36,15 @@
                 
 
                     @foreach ($lht as $m)
-                        <label for="name" class="col-md-2 col-form-label text-md-right">NIM         :</label>
-                        {{ $m->nim }}                <br> 
-                        <label for="name" class="col-md-2 col-form-label text-md-right">Nama        :</label>
-                        {{ $m->nama_mhs }}               <br> 
-                        <label for="name" class="col-md-2 col-form-label text-md-right">TTL         :</label>
-                        {{ $m->ttl }}<br>
-                        <label for="name" class="col-md-2 col-form-label text-md-right">Jurusan     :</label>
-                        {{ $m->jurusan }}<br>
-                    
+                        <label for="name" class="col-md-2 col-form-label text-md-right">Kode Progres    :</label>
+                        {{ $m->kd_progres }}                <br> 
+                        <!-- <label for="name" class="col-md-2 col-form-label text-md-right">NIM             :</label>
+                        {{ $m->nimmm }}               <br>  -->
+                        <label for="name" class="col-md-2 col-form-label text-md-right">Tanggal         :</label>
+                        {{ $m->tanggal }}<br>
+                        <label for="name" class="col-md-2 col-form-label text-md-right">Detail          :</label>
+                        {{ $m->detail }}<br>
+                    <br><br><br>
                     
                    @endforeach
 

@@ -20,5 +20,11 @@ class Mahasiswa extends Model
         // return $this->hasMany('App\Perusahaan','kode_pt','kodePT');
         return $this->hasMany(Perusahaan::class, 'kode_pt','kodePT');
     }
+
+    public function progres(){
+        // return $this->hasMany('App\Perusahaan');
+        // return $this->hasMany('App\Perusahaan','kode_pt','kodePT');
+        return $this->hasMany(Perusahaan::class, 'nim','nimmm');
+    }
     
 }

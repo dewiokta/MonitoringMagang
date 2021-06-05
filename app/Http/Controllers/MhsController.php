@@ -97,7 +97,7 @@ class MhsController extends Controller
 
     public function lihat($id)
     {
-        $lht = DB::table('mahasiswas')->where('nim', '=', $id)->get();
+        $lht = DB::table('progres')->where('nimmm', '=', $id)->get();
         return view('admin_kampus\lihat', compact('lht'));
     }
     // public function tampil()
