@@ -12,6 +12,7 @@ use App\Models\Kampus;
 use App\Models\Perusahaan;
 use App\Models\Tugas;
 use App\Models\mhs_memiliki_tugas;
+use App\Models\Progres;
 
 
 class MhsController extends Controller
@@ -19,9 +20,27 @@ class MhsController extends Controller
     // mhs
     public function home_mhs()
     {
-        return view('mhs\mhsHome');
+        $rpt = Progres::Get();
+        return view('mhs\mhsHome', compact('rpt'));
     }
+    public function storee(Request $request)
+    {
+        $this->validate($request, [
+            'kd_progres' => 'required',
+            'tanggal' => 'required',
+            'detail' => 'required',
+            'nimmm' => 'required',
+        ]);
 
+        Progres::create([
+            'kd_progres' => $request->kd_progres,
+            'tanggal' => $request->tanggal,
+            'detail' => $request->detail,
+            'nimmm' => $request->nimmm,
+        ]);
+
+        return redirect('home_mhs')->with('Success', 'Tugas added successfully');
+    }
     public function selesai_mhs()
     {
         // $tgs = DB::table('tugas')->where('kode_tugas', '=', '2222')
@@ -31,7 +50,10 @@ class MhsController extends Controller
             ->where('nimm', '=', '1931710015')->get();
         return view('mhs\mhsSelesai', compact('tgs'));
     }
-
+    public function add_progres()
+    {
+        return view('mhs\add_progres');
+    }
     public function ready_mhs()
     {
         $tgs = Tugas::Get();
@@ -165,6 +187,9 @@ class MhsController extends Controller
     {
         return view('admin_pt\add_pt');
     }
+
+   
+
     public function store(Request $request)
     {
         $this->validate($request, [
