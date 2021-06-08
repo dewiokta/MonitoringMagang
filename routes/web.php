@@ -24,6 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // mhs
 Route::get('/home_mhs', [App\Http\Controllers\MhsController::class, 'home_mhs'])->name('mhsHome');
 Route::get('/selesai_mhs', [App\Http\Controllers\MhsController::class, 'selesai_mhs'])->name('mhsSelesai');
+Route::get('/cetak_pdf', [App\Http\Controllers\MhsController::class, 'cetak_pdf'])->name('cetak_pdf');
 Route::get('/ready_mhs', [App\Http\Controllers\MhsController::class, 'ready_mhs'])->name('mhsReady');
 Route::get('/add_progres',[App\Http\Controllers\MhsController::class, 'add_progres'])->name('add_progres');
 Route::post('/upload_file', [App\Http\Controllers\MhsController::class, 'upload_file'])->name('upload_file');
