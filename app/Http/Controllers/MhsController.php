@@ -57,16 +57,15 @@ class MhsController extends Controller
 
     public function cetak_pdf()
     {
-        $cetak = DB::table('tugas')
+        $cetak_bio = DB::table('tugas')
             ->join('mhs_memiliki_tugas', 'mhs_memiliki_tugas.kode_tgs', '=', 'tugas.kode_tugas')
             ->join('mahasiswas', 'mahasiswas.nim', '=', 'mhs_memiliki_tugas.nimm')
-            ->join('perusahaans', 'perusahaans.kode_pt', '=', 'mahasiswas.kodePT')
-            ->join('kampuses', 'kampuses.nip', '=', 'mahasiswas.nipp')
-            ->select('perusahaans.alamat','kampuses.nip','kampuses.nama_dosen','kampuses.jurusan','kampuses.jabatan','perusahaans.pembimbing','perusahaans.nama_pt','mahasiswas.nama_mhs','mahasiswas.nim', 'tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
+            ->select('mahasiswas.nama_mhs','mahasiswas.nim', 'tugas.status', 'tugas.nama_tugas', 'mhs_memiliki_tugas.nilai', 'mhs_memiliki_tugas.komentar')
             ->where('nimm', '=', '1931710015')->get();
         // $tgs = Tugas::all();
         // $pdf = PDF::loadview('mhs\cetak_pdf', ['\cetak_pdf' => $cetak]);
-        $pdf = PDF::loadView('mhs\cetak_pdf',compact('cetak'));
+        $cetak_progres = Progres::all();
+        $pdf = PDF::loadView('mhs\cetak_pdf',compact('cetak_bio','cetak_progres'));
         return $pdf->stream();
     }
 
