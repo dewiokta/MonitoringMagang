@@ -1,4 +1,4 @@
-@extends('master')
+@extends('masterp')
 
 @section('konten')
 <style type="text/css">
@@ -40,7 +40,7 @@
     <div class="col-md-12">
       <div class="hello">
         <h2>Tugas Selesai</h2>
-        <p>Tugas yang telah dikerjakan</p>
+        <p>Tugas yang sudah dikerjakan mahasiswa magang</p>
       </div>
       <br>
       <form class="example" action="/action_page.php" style="margin:auto;max-width:700px">
@@ -48,41 +48,37 @@
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
 
-
       <br><br><br><br>
 
       <div class="card-body">
         <table class="table table-bordered table-hover table-striped">
           <thead>
             <tr>
-              <th>File Tugas</th>
+              <th>Kode Tugas</th>
               <th>Nama Tugas</th>
-              <th>Nilai</th>
-              <th>Komentar</th>
-
+              <th>Nama Mahasiswa</th>
+              <th>File </th>
+              <th>Aksi </th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($tgs as $t)
-
+            @foreach ($mhsss as $m)
+            @if($m->kode_pt == 3331)
             <tr>
-              <td> {{ $t->status }} </td>
-              <td> {{ $t->nama_tugas }} </td>
-              <td> {{ $t->nilai }} </td>
-              <td> {{ $t->komentar }} </td>
-
+              <td> {{ $m->kode_tugas }} </td>
+              <td> {{ $m->nama_tugas }} </td>
+              <td> {{ $m->nama_mhs }} </td>
+              <td> {{ $m->status }} </td>
+              <td> <a href="/nilai/{{ $m->nim }}" class="btn btn-primary">Nilai</a> </td>
             </tr>
-
+            @endif
             @endforeach
           </tbody>
         </table>
       </div>
     </div>
-    <div class="col-md-9"></div> <br>
-    <div class="col-md-3">
-    <a href="/cetak_pdf" class="btn btn-success" target="_blank">CETAK PDF</a>
-    </div>
   </div>
 </div>
+
 
 @endsection
